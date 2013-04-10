@@ -268,7 +268,7 @@ class Swagger implements \Serializable
         if (!$path) {
             $path = $this->path;
         }
-        $excludePaths = isset($this->excludePath) ? explode(':', $this->excludePath) : array();
+        $excludePaths = isset($this->excludePath) ? explode(';', $this->excludePath) : array();
         $files = array();
         $dir = new \DirectoryIterator($path);
         /* @var $fileInfo \DirectoryIterator */
