@@ -161,7 +161,7 @@ class Swagger implements \Serializable
                         array_push($models, $operation->responseClass);
                     } elseif (
                         isset($operation->responseClass) && ($model = $this->modelType($operation->responseClass))
-                        && in_array($model, $this->models)
+                        && array_key_exists($model, $this->models)
                     ) {
                         array_push($models, $model);
                     }
@@ -170,13 +170,13 @@ class Swagger implements \Serializable
 						if (array_key_exists($parameter->dataType, $this->models)) {
 							array_push($models, $parameter->dataType);
 						} elseif (
-							($model = $this->modelType($parameter->dataType)) && in_array($model, $this->models)
+							($model = $this->modelType($parameter->dataType)) && array_key_exists($model, $this->models)
 						) {
 							array_push($models, $model);
 						}
                     }
                 }
-                $models = array_merge($models, $this->resolveModels($models));
+               // $models = array_merge($models, $this->resolveModels($models));
                 foreach (array_unique($models) as $model) {
 					$resource->models[$model] = $this->models[$model];
                 }
