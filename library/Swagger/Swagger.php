@@ -176,7 +176,7 @@ class Swagger implements \Serializable
 						}
                     }
                 }
-               // $models = array_merge($models, $this->resolveModels($models));
+                $models = array_merge($models, $this->resolveModels($models));
                 foreach (array_unique($models) as $model) {
 					$resource->models[$model] = $this->models[$model];
                 }
@@ -212,7 +212,7 @@ class Swagger implements \Serializable
                 if ($type && (array_key_exists($type, $this->models) || $type = $this->modelType($type))) {
                     if (array_key_exists($type, $this->models) && !in_array($type, $models)) {
                         array_push($models, $type);
-                        $models = array_merge($models, $this->resolveModels($models));
+                        //$models = array_merge($models, $this->resolveModels($models));
                     }
                 }
             }
